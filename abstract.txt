@@ -1,0 +1,23 @@
+Project Title: Bus Management System using  Route and Schedule Optimization
+
+Domain / Technology: Web Application Development
+Application: Public and private transportation companies,  intercity and intracity bus services
+Dataset : Bus schedules, route details, passenger booking records, .
+Expected  Processing:
+Route and schedule optimization algorithms
+Reporting and analytics for operational data
+
+Expected Output from Project:
+The system is expected to optimize bus routes and schedules by deploying more buses on high-demand routes and adjusting timings based on passenger load. It will provide accurate fare calculation, along with search and filter options for available buses to assist administrators
+
+Abstract:
+The Bus Route and Schedule Optimization System is designed to make public transportation more reliable, fair, and accessible for all passengers. The system continuously analyzes ticket sales to identify high-demand routes and ensures that additional buses are deployed where needed, reducing overcrowding and respecting the right of every passenger to safe and comfortable travel.
+For administrators, it provides transparent tools such as fare calculation, search, and filtering of available buses, enabling fair pricing, efficient scheduling, and better decision-making. By combining demand-driven scheduling with equitable resource allocation, the system upholds passenger rights, ensures timely service, and promotes equal access to affordable transportation.
+
+
+
+Team Members:
+Pranav Anant Chopade(TY-DS-42-231106044)
+Saurabh Sanjay Yeole(TY-DS-33-231106035)
+Kartik Suresh Patil(TY-DS-64-241206005)
+Mihir Vikas Wagh(TY-DS-231106020)
