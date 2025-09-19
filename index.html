@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Scheduling Optimizer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #388E3C;
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-color: #333;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+            background-image: url('msrtc bus .png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        .card {
+            background-color: var(--card-background);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+        
+        h1,
+        h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            color: #555;
+        }
+        
+        select,
+        button {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            background-color: #fefefe;
+            transition: all 0.3s ease;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        #schedule-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        #schedule-table th,
+        #schedule-table td {
+            padding: 1rem 1.5rem;
+            text-align: left;
+        }
+        
+        #schedule-table thead {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        #schedule-table th {
+            font-weight: 600;
+        }
+        
+        #schedule-table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        
+        #schedule-table tbody tr:hover {
+            background-color: #f1f1f1;
+            transition: background-color 0.3s ease;
+        }
+        
+        #message {
+            margin-top: 1.5rem;
+            font-weight: 600;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="card">
+            <h1>Bus Scheduling Optimizer</h1>
+            <form id="optimizationForm">
+                <div class="form-group">
+                    <label for="destination">Select Destination From Mumbai:</label>
+                    <select id="destination" required>
+                        <option value="chh sambhajinager">chh sambhajinager</option>
+                        <option value="goa">goa</option>
+                        <option value="indore">indore</option>
+                        <option value="kolhapur">kolhapur</option>
+                        <option value="nagpur">nagpur</option>
+                        <option value="nashik">nashik</option>
+                        <option value="pune">pune</option>
+                        <option value="solapur">solapur</option>
+                        <option value="surat">surat</option>
+                        <option value="thane">thane</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="busName">Select Bus:</label>
+                    <select id="busName" required>
+                        <option value="Bus A">Bus A</option>
+                        <option value="Bus B">Bus B</option>
+                        <option value="Bus C">Bus C</option>
+                        <option value="Bus D">Bus D</option>
+                        <option value="Bus E">Bus E</option>
+                        <option value="Bus F">Bus F</option>
+                        <option value="Bus G">Bus G</option>
+                        <option value="Bus H">Bus H</option>
+                        <option value="Bus I">Bus I</option>
+                        <option value="Bus J">Bus J</option>
+                    </select>
+                </div>
+                <button type="submit">Generate Optimized Schedule</button>
+                <div id="message"></div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Optimized Schedule</h2>
+            <table id="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Trip ID</th>
+                        <th>Route</th>
+                        <th>Bus</th>
+                        <th>Departure</th>
+                        <th>Arrival</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('optimizationForm');
+            const destinationSelect = document.getElementById('destination');
+            const busNameSelect = document.getElementById('busName');
+            const scheduleTableBody = document.querySelector('#schedule-table tbody');
+            const messageDiv = document.getElementById('message');
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                messageDiv.textContent = '';
+                scheduleTableBody.innerHTML = '';
+
+                const requestData = {
+                    destination: destinationSelect.value,
+                    bus_name: busNameSelect.value
+                };
+
+                fetch('/optimize', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(requestData)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.error) {
+                            messageDiv.textContent = `Error: ${data.error}`;
+                            return;
+                        }
+
+                        data.optimized_schedule.forEach(trip => {
+                            const row = scheduleTableBody.insertRow();
+                            row.insertCell(0).textContent = trip.trip_id;
+                            row.insertCell(1).textContent = trip.route;
+                            row.insertCell(2).textContent = trip.bus;
+                            row.insertCell(3).textContent = trip.departure_time;
+                            row.insertCell(4).textContent = trip.arrival_time;
+                        });
+                    })
+                    .catch(error => {
+                        messageDiv.textContent = 'Failed to connect to the backend.';
+                        console.error('Fetch error:', error);
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
